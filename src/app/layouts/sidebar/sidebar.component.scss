@@ -1,0 +1,41 @@
+.side-nav-link-ref{
+    margin-left: -15px;
+    cursor: pointer;
+  }
+  
+  a{
+    color: white;
+  }
+  
+  span{
+    color: white;
+  }
+  
+  .bx{
+    color: white;
+  }
+  
+  li{
+    color: white;
+  }
+  
+  /* Estilo del enlace activo */
+  .side-nav-link-ref.active-link {
+    background-color: #64001e; /* Cambia a tu color preferido */
+    color: #ffffff !important; /* Cambia el texto a blanco */
+    font-weight: bold; /* Resalta el texto */
+    border-radius: 5px; /* Opcional: redondeo */
+  }
+  
+  /* Cambiar ícono activo si es necesario */
+  .side-nav-link-ref.active-link i {
+    color: #ffffff !important; /* Cambia el color del ícono */
+  }
+  
+  
+  /* Estilo para el contenedor activo de submenús */
+  .is-parent.active-parent {
+    background-color: #64001e; /* Color del menú principal cuando un submenú está activo */
+    color: #ffffff !important;
+  }
+  

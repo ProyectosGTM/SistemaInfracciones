@@ -1,0 +1,163 @@
+<body>
+  <div class="contenedorr"
+  style="background-color: #ab0033; 
+         border-bottom: 7px solid #bc955c; 
+         color: white; 
+         width: 100%; 
+         height: 80px; 
+         display: flex; 
+         justify-content: center; 
+         align-items: center;">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col text-center">
+        <h1 class="header-title">
+          <i class="fas fa-gavel"></i> Sistema de Infracciones
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  <div class="account-pages mt-5 mb-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="text-center">
+            <a href="/" class="mb-5 d-block auth-logo">
+              <img src="assets/images/logoGobierno-.png" alt="" height="110" class="logo logo-dark">
+              <img src="assets/images/logo-light.png" alt="" height="22" class="logo logo-light">
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="row align-items-center justify-content-center">
+        <div class="col-md-8 col-lg-6 col-xl-5">
+          <div class="card overflow-hidden">
+
+            <div class="card-body p-4">
+              <div class="text-center mt-2">
+                <h5 style="color: #ab0033;">Bienvenido !</h5>
+                <p class="text-muted">Inicia sesión para continuar.</p>
+              </div>
+              <div class="p-2 mt-4">
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                  @if(error)
+                  { <ngb-alert type="danger" [dismissible]="false">{{ error }}</ngb-alert>
+                  }
+                  <div class="mb-3">
+                    <label for="UserName" style="color: rgb(161, 161, 161);">Usuario</label>
+                    <input type="UserName" formControlName="UserName" class="form-control" id="UserName"
+                      placeholder="Email" [ngClass]="{ 'is-invalid': submitted && f.UserName.errors }" />
+                    @if(submitted && f.UserName.errors){
+                    <div class="invalid-feedback">
+                      @if(f.UserName.errors.required){
+                      <div>Correo electrónico es requerido</div>}
+                      @if(f.UserName.errors.UserName){
+                      <div>El correo electrónico debe ser una dirección de correo electrónico válida.</div>}
+                    </div>}
+                  </div>
+
+                  <div class="mb-3 mt-2">
+                    <div class="float-end">
+                      <!-- <a style="color: rgb(161, 161, 161);"
+                        class="text-muted">Contraseña olvidada?</a> -->
+                    </div>
+                    <label for="Password" style="color: rgb(161, 161, 161);">Contraseña</label>
+                    <div class="password-container">
+                      <input [type]="type" formControlName="Password" class="form-control" id="Password" placeholder="Contraseña" />
+                      <span *ngIf="type == 'password'" class="eyeButton" (click)="myFunctionPasswordCurrent()">
+                        <i class="fas fa-eye"></i>
+                      </span>
+                      <span *ngIf="type == 'text'" class="eyeButton" (click)="myFunctionPasswordCurrent()">
+                        <i class="fas fa-eye-slash"></i>
+                      </span>
+                    </div>
+                    
+                    @if(submitted && f.email.errors){
+                    <div class="invalid-feedback">
+                      @if(f.email.errors.required){
+                      <div>Password is required</div>}
+                    </div>}
+                  </div>
+
+                  <!-- <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="auth-remember-check">
+                    <label class="form-check-label" for="auth-remember-check">Remember me</label>
+                  </div> -->
+
+                  <div class="mt-3 text-end">
+                    <button class="btn btn-danger w-sm waves-effect waves-light" [disabled]="loginForm.invalid" type="submit">
+                      <div class="justigy">
+                        <span [@fadeInUp] *ngIf="loading" class="loader"></span>
+                        <span *ngIf="!loading">Ingresar</span>
+                        <span style="margin-left: 5px;" *ngIf="loading">Cargando...</span>
+                      </div> 
+                    </button>
+                  </div>
+                  <!-- <div class="mt-4 text-center">
+                    <div class="signin-other-title">
+                      <h5 class="font-size-14 mb-3 title">Sign in with</h5>
+                    </div>
+
+                    <ul class="list-inline">
+                      <li class="list-inline-item">
+                        <a href="javascript:void()" class="social-list-item bg-primary text-white border-primary">
+                          <i class="mdi mdi-facebook"></i>
+                        </a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="javascript:void()" class="social-list-item bg-info text-white border-info">
+                          <i class="mdi mdi-twitter"></i>
+                        </a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="javascript:void()" class="social-list-item bg-danger text-white border-danger">
+                          <i class="mdi mdi-google"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div> -->
+
+                  <!-- <div class="mt-4 text-center">
+                    <p class="mb-0">Don't have an account ? <a href="/account/signup" class="fw-medium text-primary">
+                        Signup now </a> </p>
+                  </div> -->
+                </form>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- <div class="mt-5 text-center" style="background-color: #ab0033;
+          padding: 11px;
+          border-top: 7px solid #bc955c;
+          color: white; align-items: center; justify-content: center; justify-content: center;">
+            <div>Todos los derechos reservados © 2025 | Gobierno del Estado de Tamaulipas 2022 - 2028</div>
+          </div> -->
+
+        </div>
+      </div>
+    </div>
+
+    <!-- end container -->
+  </div>
+  <div class="contenedorr"
+    style="background-color: #ab0033;
+    color: #fff;
+    border-top: 7px solid #bc955c; position: absolute; bottom: 0; width: 100%; height: 70px; display: flex; justify-content: center; align-items: center;">
+    <div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            Todos los derechos reservados © 2025 | Gobierno del Estado de Tamaulipas 2022 - 2028
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end page -->
+</body>
