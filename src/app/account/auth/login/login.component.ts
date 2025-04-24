@@ -139,15 +139,16 @@ export class LoginComponent implements OnInit {
         return throwError(() => "")
       })
       ).subscribe((result: User) => {
+        setTimeout(()=> {
+          this.router.navigate(['/']);
+          this.loading = false;
+        },1000)
       this.auth.setData(result);
 
-      this.router.navigate(['/']);
       const nombreUsuario = result.nombre;
       const apellidoUsuario = result.apellidoPaterno;
   
       this.toastr.success(`Bienvenido al Sistema`, '¡Operación Exitosa!');
-  
-      this.loading = false;
       this.textLogin = 'Iniciar Sesión';
     });
     // this.auth.authenticate(this.credentials).subscribe(

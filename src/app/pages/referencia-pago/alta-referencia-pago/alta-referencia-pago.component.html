@@ -1,0 +1,263 @@
+<div [@fadeInUp] class="container-fluid">
+    <h3>
+        <i class="fa fa-money"></i> Generación de Referencia de Pago.
+    </h3>
+
+    <div class="row centrarModal" *ngIf="showForm">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <form>
+                        <div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <span class="encabezado">
+                                        DATOS DEL CONDUCTOR
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="mb-3 col-lg-4">
+                                    <input type="text" formControlName="name" class="form-control"
+                                        placeholder="Nombre(s)">
+                                </div>
+                                <div class="mb-3 col-lg-4">
+                                    <input type="text" formControlName="name" class="form-control"
+                                        placeholder="Apellido Paterno">
+                                </div>
+                                <div class="mb-3 col-lg-4">
+                                    <input type="text" formControlName="name" class="form-control"
+                                        placeholder="Apellido Materno">
+                                </div>
+                            </div>
+                            <div class="row mt-0">
+                                <div class="mb-3 col-lg-6">
+                                    <input type="text" formControlName="name" class="form-control"
+                                        placeholder="RFC del conductor" (input)="sanitizeInputRFC($event)" maxlength="13">
+                                </div>
+                                <div class="mb-3 col-lg-6">
+                                    <input type="text" formControlName="name" class="form-control"
+                                        placeholder="CURP del conductor" (input)="sanitizeInputCURP($event)" maxlength="18">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="row mt-4">
+                                <div class="col-md-12">
+                                    <span class="encabezado">
+                                        DOMICILIO DEL CONDUCTOR
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="mb-3 col-lg-3">
+                                    <input type="text" formControlName="name" class="form-control" placeholder="Calle">
+                                </div>
+                                <div class="mb-3 col-lg-3">
+                                    <input type="text" formControlName="name" class="form-control"
+                                        placeholder="# Exterior">
+                                </div>
+                                <div class="mb-3 col-lg-3">
+                                    <input type="text" formControlName="name" class="form-control"
+                                        placeholder="# Interior">
+                                </div>
+                                <div class="mb-3 col-lg-3">
+                                    <input type="text" formControlName="name" class="form-control"
+                                        placeholder="Colonia">
+                                </div>
+                            </div>
+                            <div class="row mt-0">
+                                <div class="mb-3 col-lg-4">
+                                    <input type="text" formControlName="name" class="form-control" placeholder="CP">
+                                </div>
+                                <div class="mb-3 col-lg-4">
+                                    <input type="text" formControlName="name" class="form-control"
+                                        placeholder="Municipio">
+                                </div>
+                                <div class="mb-3 col-lg-4">
+                                    <input type="text" formControlName="name" class="form-control"
+                                        placeholder="Entidad Federativa">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="row mt-4">
+                                <div class="col-md-12">
+                                    <span class="encabezado">
+                                        DATOS DE LA LICENCIA DEL CONDUCTOR
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="mb-3 col-lg-6">
+                                    <div class="d-flex align-items-center">
+                                        <label class="mb-0" style="width: 270px;">Tipo de licencia de conducir</label>
+                                        <select class="form-control" name="tipoLicencia" id="tipoLicencia">
+                                            <option value="">Selecciona una opción</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 col-lg-6">
+                                    <div class="d-flex align-items-center">
+                                        <label class="mb-0" style="width: 250px;">No° de licencia de conducir</label>
+                                        <input type="text" formControlName="numeroLicencia" class="form-control"
+                                            placeholder="Ej. 234865121">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-0">
+                                <div class="mb-3 col-lg-6">
+                                    <div class="d-flex align-items-center">
+                                        <label class="mb-0" style="width: 270px;">Vigencia de la licencia de
+                                            conducir</label>
+                                        <input type="date" formControlName="numeroLicencia" class="form-control"
+                                            placeholder="Ej. 11/01/2025">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="row mt-4">
+                                <div class="col-md-12">
+                                    <span class="encabezado">
+                                        DATOS DE LA MULTA
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="mb-3 col-lg-6">
+                                    <div class="d-flex align-items-center">
+                                        <label class="mb-0" style="width: 250px;">Categoría de la multa</label>
+                                        <select class="form-control" name="tipoLicencia" id="tipoLicencia">
+                                            <option value="">Selecciona una opción</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 col-lg-6">
+                                    <div class="d-flex align-items-center">
+                                        <label class="mb-0" style="width: 250px;">Consulta de la multa</label>
+                                        <select class="form-control" name="tipoLicencia" id="tipoLicencia">
+                                            <option value="">Selecciona una opción</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-0">
+                                <div class="mb-3 col-lg-6">
+                                    <div class="d-flex align-items-center">
+                                        <label class="mb-0" style="width: 250px;"></label>
+                                        <input type="text" formControlName="numeroLicencia" class="form-control"
+                                            placeholder="Monto de la multa">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-0">
+                                <div class="mb-3 col-lg-12">
+                                    <div class="d-flex align-items-center">
+                                        <label class="mb-0" style="width: 400px;">Clasificación en finanzas</label>
+                                        <input type="text" formControlName="numeroLicencia" class="form-control"
+                                            placeholder="Otros">
+                                        <input type="text" formControlName="numeroLicencia" style="margin-left: 15px;"
+                                            class="form-control" placeholder="ID conforme finanzas">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-0">
+                                <div class="mb-3 col-lg-12">
+                                    <div class="d-flex align-items-center">
+                                        <label class="mb-0" style="width: 210px;">Descripción breve de la multa</label>
+                                        <input type="text" formControlName="numeroLicencia" style="width: 30%;"
+                                            class="form-control" placeholder="Ej. Manejar en sentido contrario">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="row mt-4">
+                                <div class="col-md-12">
+                                    <span class="encabezado">
+                                        DATOS DEL CONDUCTOR
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="mb-3 col-lg-3">
+                                    <input type="text" formControlName="name" class="form-control"
+                                        placeholder="Placa del vehículo">
+                                </div>
+                                <div class="mb-3 col-lg-3">
+                                    <input type="text" formControlName="name" class="form-control"
+                                        placeholder="Marca del vehículo">
+                                </div>
+                                <div class="mb-3 col-lg-3">
+                                    <input type="text" formControlName="name" class="form-control"
+                                        placeholder="Modelo del vehículo">
+                                </div>
+                                <div class="mb-3 col-lg-3">
+                                    <input type="text" formControlName="name" class="form-control"
+                                        placeholder="Año del vehículo">
+                                </div>
+                            </div>
+                            <div class="row mt-0">
+                                <div class="mb-3 col-lg-4">
+                                    <input type="text" formControlName="name" class="form-control"
+                                        placeholder="Folio de la tarjeta de circulación">
+                                </div>
+                                <div class="mb-3 col-lg-4">
+                                    <input type="text" formControlName="name" class="form-control"
+                                        placeholder="Vigencía de la tarjeta de circulación">
+                                </div>
+                                <div class="mb-3 col-lg-4">
+                                    <input type="text" formControlName="name" class="form-control"
+                                        placeholder="Propietario de vehículo">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="mt-4 d-flex gap-2">
+                            <button type="submit" class="btn btn-success" (click)="mostrarAlerta()" id="greenAlta">
+                                <i class="fa fa-check"></i> <span> Enviar Datos</span>
+                            </button>
+
+                            <button type="button" class="btn btn-danger">
+                                <i class="fa fa-times"></i> Cancelar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5 centrarModal" *ngIf="showAlertSuccess">
+        <div class="col-lg-6">
+            <div class="card-body">
+                <div class="alert-success-payment">
+                    <div class="check-icon">
+                        <i class="fa fa-check"></i>
+                    </div>
+                    <h4 class="alert-title">¡Operación Exitosa!</h4>
+
+                    <div class="extra-info">
+                        <div><strong>Estatus de la operación:</strong> <span>{{ estatusOperacion || 'OK' }}</span></div>
+                        <div><strong>Referencia generada:</strong> <span>{{ referenciaGenerada || '13670667224224112613'
+                                }}</span></div>
+                        <div><strong>Fecha de vencimiento:</strong> <span>{{ fechaVencimiento || '14/04/2025' }}</span>
+                        </div>
+                        <div><strong>Folio de registro de la multa:</strong> <span>{{ folioMulta || '1104367' }}</span>
+                        </div>
+                    </div>
+                    <button class="btn-continue" (click)="mostrarForm()">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

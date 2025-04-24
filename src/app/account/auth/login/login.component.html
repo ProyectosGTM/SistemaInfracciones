@@ -91,7 +91,7 @@
                   <div class="mt-3 text-end">
                     <button class="btn btn-danger w-sm waves-effect waves-light" [disabled]="loginForm.invalid" type="submit">
                       <div class="justigy">
-                        <span [@fadeInUp] *ngIf="loading" class="loader"></span>
+                        <span *ngIf="loading" class="loader"></span>
                         <span *ngIf="!loading">Ingresar</span>
                         <span style="margin-left: 5px;" *ngIf="loading">Cargando...</span>
                       </div> 

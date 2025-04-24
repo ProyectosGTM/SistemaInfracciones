@@ -7,6 +7,15 @@
 @import '~flatpickr/dist/flatpickr.css';
 
 // Rating
+
+.dx-pager .dx-page-sizes .dx-selection, .dx-pager .dx-pages .dx-selection {
+    cursor: inherit;
+    text-shadow: none;
+    color: #fff;
+    border-color: transparent;
+    background-color: #ab0033;
+}
+
 .stars {
     font-size: 30px;
     color: var(--bs-gray);

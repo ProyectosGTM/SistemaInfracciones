@@ -18,7 +18,7 @@ export const MENU: MenuItem[] = [
     },
     {
          id: 2,
-         label: 'Dispositivos',
+         label: 'Terminal de Cobro',
          icon: 'uil-document-layout-left',
          link: '/dispositivos/lista-dispositivos',
     },
@@ -30,10 +30,31 @@ export const MENU: MenuItem[] = [
     },
     {
         id: 4,
-        label: 'Operadores',
+        label: 'Conductores',
         icon: 'uil-users-alt',
         link: '/operadores/lista-operadores',
     },
+    {
+        id: 9,
+        label: 'Genereación de Referencia de Pago',
+        icon: 'uil-file-alt',
+        link: '/referencia-pago/generar-referencia',
+        parentId: 8,
+      },
+      {
+        id: 10,
+        label: 'Generar Boleta de Multa',
+        icon: '	uil-document-info',
+        link: '/boleta-multa/generar-boleta',
+        parentId: 8,
+      },
+      {
+        id: 11,
+        label: 'Consulta de Estatus de Pago',
+        icon: 'uil-list-ul',
+        link: '/estatus-pago/consulta-estatus',
+        parentId: 8,
+      },
     {
         id: 5,
         label: 'Monederos',
@@ -56,7 +77,7 @@ export const MENU: MenuItem[] = [
         id: 8,
         label: 'Bitacora',
         icon: 'uil-list-ul',
-        link: '/bitacora',
+        link: '/bitacora/lista-bitacora',
     },
 ];
 

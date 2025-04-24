@@ -8,6 +8,7 @@
   }
   
   span{
+    font-size: 13px;
     color: white;
   }
   
@@ -19,23 +20,28 @@
     color: white;
   }
   
-  /* Estilo del enlace activo */
+  
   .side-nav-link-ref.active-link {
-    background-color: #64001e; /* Cambia a tu color preferido */
-    color: #ffffff !important; /* Cambia el texto a blanco */
-    font-weight: bold; /* Resalta el texto */
-    border-radius: 5px; /* Opcional: redondeo */
+    background-color: #64001e; 
+    color: #ffffff !important; 
+    font-weight: bold; 
+    border-radius: 5px; 
+  }
+
+  .side-nav-link-ref:hover{
+    background-color: #64001e;
+    color: #ffffff !important; 
   }
   
-  /* Cambiar ícono activo si es necesario */
+  
   .side-nav-link-ref.active-link i {
-    color: #ffffff !important; /* Cambia el color del ícono */
+    color: #ffffff !important; 
   }
   
   
-  /* Estilo para el contenedor activo de submenús */
+  
   .is-parent.active-parent {
-    background-color: #64001e; /* Color del menú principal cuando un submenú está activo */
+    background-color: #64001e; 
     color: #ffffff !important;
   }
   

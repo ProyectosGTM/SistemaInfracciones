@@ -32,7 +32,10 @@ const routes: Routes = [
   { path: 'monederos', loadChildren: () => import('./monederos/monederos.module').then(m => m.MonederosModule)},
   { path: 'pasajeros', loadChildren: () => import('./pasajeros/pasajeros.module').then(m => m.PasajerosModule)},
   { path: 'transacciones', loadChildren: () => import('./transacciones/transacciones.module').then(m => m.TransaccionesModule)},
-  { path: 'bitacora', component: ListaBitacoraComponent },
+  { path: 'referencia-pago', loadChildren: () => import('./referencia-pago/referencia-pago.module').then(m => m.ReferenciaPagoModule)},
+  { path: 'boleta-multa', loadChildren: () => import('./boleta-multa/boleta-multa.module').then(m => m.BoletaMultaModule)},
+  { path: 'estatus-pago', loadChildren: () => import('./estatus-pago/estatus-pago.module').then(m => m.EstatusPagoModule)},
+  { path: 'bitacora', loadChildren: () => import('./bitacora/bitacora.module').then(m => m.BitacoraModule)},
 ];
 
 @NgModule({

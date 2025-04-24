@@ -22,6 +22,7 @@ export class ListaBitacoraComponent implements OnInit {
   public totalRecords: number = 0;
   public totalPages: number = 0;
   public isLoading: boolean = false;
+  public grid: boolean = true;
 
   constructor(private bitacoraService: BitacoraService) {}
 
@@ -38,12 +39,6 @@ export class ListaBitacoraComponent implements OnInit {
                 const fechaB = new Date(b.Fecha).getTime();
                 return fechaB - fechaA;
             });
-
-            this.filteredBitacora = [...this.bitacoraList];
-            this.totalRecords = this.bitacoraList.length; 
-            this.updateTotalPages();
-            this.updatePaginatedBitacora();
-            this.isLoading = false;
         },
         (error) => {
             console.error('Error al obtener bitácora:', error);
