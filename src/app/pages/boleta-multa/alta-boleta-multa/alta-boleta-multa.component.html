@@ -1,44 +1,36 @@
-<!-- <div id="loading" class="loading-overlay" *ngIf="isLoading">
-    <div class="loading-spinner"></div>
-</div> -->
-
 <div [@fadeInUp] class="container-fluid">
     <h3>
-        <i class="fa fa-file-invoice"></i> Generar Boleta de Multa
+        <i class="fa fa-fa-file-invoice"></i> Generación Boleta de Multa.
     </h3>
-    <div class="row">
+
+    <div class="row centrarModal">
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="row mb-md-2">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <form>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <i class="fa fa-align-left"></i>&nbsp;
-                                                <label for="nombre">Nombre: <span class="text-danger">*</span></label>
-                                                <input formControlName="nombre" class="form-control" id="nombre"
-                                                    placeholder="Ingrese nombre del nuevo módulo">
-                                            </div>
-                                        </div>
-
-                                        <br>
-                                        <div class="kt-portlet__foot  mt-3">
-                                            <div class="kt-form__actions kt-form__actions">
-                                                <button class="btn buttonSubmit" id="greenAlta">
-                                                    <i class="fa fa-check"></i><span>dadawd</span>
-                                                </button>&nbsp; &nbsp;
-                                                <button class="btn btn-danger"><i
-                                                        class="fa fa-times"></i>&nbsp;&nbsp;&nbsp;Cancelar</button>
-                                            </div>
-                                        </div>
-                                    </form>
+                    <form>
+                        <div>
+                            <div class="row mt-2">
+                                <div class="mb-3 col-lg-12">
+                                    <div class="d-flex align-items-center">
+                                        <label class="mb-0" style="width: 270px;">Folio de la multa:</label>
+                                        <input type="text" maxlength="20" formControlName="numeroLicencia" class="form-control"
+                                            placeholder="Ej. 13670667224224174851">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+
+
+                        <div class="mt-4 d-flex gap-2">
+                            <button type="submit" class="btn btn-success" id="greenAlta">
+                                <i class="fa fa-check"></i> <span> Enviar Datos</span>
+                            </button>
+
+                            <button type="button" class="btn btn-danger">
+                                <i class="fa fa-times"></i> Cancelar
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

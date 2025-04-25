@@ -55,12 +55,12 @@ export const MENU: MenuItem[] = [
         link: '/estatus-pago/consulta-estatus',
         parentId: 8,
       },
-    {
-        id: 5,
-        label: 'Monederos',
-        icon: 'uil-moneybag-alt',
-        link: '/monederos/lista-monederos',
-    },
+    // {
+    //     id: 5,
+    //     label: 'Monederos',
+    //     icon: 'uil-moneybag-alt',
+    //     link: '/monederos/lista-monederos',
+    // },
     // {
     //     id: 6,
     //     label: 'Pasajeros',

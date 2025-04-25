@@ -75,20 +75,24 @@ const lineColumAreaChart: ChartType = {
             columnWidth: '30%'
         }
     },
-    colors: ['#556ee6', '#dcdfe3', '#f1b44c'],
+    colors: ['#556ee6', '#f1b44c', '#ab0033', '#51ca9e'],
     series: [{
-        name: 'Desktops',
+        name: 'Multas Leves',
         type: 'column',
         data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30]
     }, {
-        name: 'Laptops',
-        type: 'area',
+        name: 'Multas Moderadas',
+        type: 'column',
         data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43]
     }, {
-        name: 'Tablets',
-        type: 'line',
+        name: 'Multas Graves',
+        type: 'column',
         data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39]
-    }],
+    },{
+        name: 'Multas Especiales',
+        type: 'column',
+        data: [35, 15, 22, 17, 45, 30, 70, 42, 50, 46, 39]
+    } ],
     fill: {
         opacity: [0.85, 0.25, 1],
         gradient: {
@@ -112,7 +116,7 @@ const lineColumAreaChart: ChartType = {
     },
     yaxis: {
         title: {
-            text: 'Points',
+            text: 'Multas',
         },
     },
     tooltip: {
@@ -121,7 +125,7 @@ const lineColumAreaChart: ChartType = {
         y: {
             formatter(y) {
                 if (typeof y !== 'undefined') {
-                    return y.toFixed(0) + ' points';
+                    return y.toFixed(0) + ' Multas';
                 }
                 return y;
             }
