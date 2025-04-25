@@ -252,7 +252,7 @@
         </div> <!-- end Col -->
     </div> <!-- end row-->
 
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-xl-4">
             <div class="card">
                 <div class="card-body">
@@ -347,11 +347,11 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div> <!-- end table-responsive-->
+                        </div> 
                     </ngx-simplebar>
-                </div><!-- end card-body-->
-            </div> <!-- end card-->
-        </div><!-- end col -->
+                </div>
+            </div> 
+        </div>
 
         <div class="col-xl-4">
             <div class="card">
@@ -484,7 +484,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- end row -->
 
     <div class="row">
@@ -503,13 +503,13 @@
                                             <label class="form-check-label" for="customCheck">&nbsp;</label>
                                         </div>
                                     </th>
-                                    <th>Order ID</th>
-                                    <th>Billing Name</th>
-                                    <th>Date</th>
+                                    <th>Multa ID</th>
+                                    <th>Name</th>
+                                    <th>Fecha</th>
                                     <th>Total</th>
-                                    <th>Payment Status</th>
-                                    <th>Payment Method</th>
-                                    <th>View Details</th>
+                                    <th>Estatus del Pago</th>
+                                    <th>Método de Pago</th>
+                                    <th>Ver Detalle</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -528,8 +528,8 @@
                                     <td>{{data.date}}</td>
                                     <td>{{data.total}}</td>
                                     <td>
-                                        <span class="badge rounded-pill bg-success-subtle text-success font-size-12" [ngClass]=" { 'bg-danger-subtle text-danger': data.status === 'Chargeback',
-                                              'bg-warning-subtle text-warning':data.status === 'Refund' }">{{data.status}}</span>
+                                        <span class="badge rounded-pill bg-success-subtle text-success font-size-12" [ngClass]=" { 'bg-danger-subtle text-danger': data.status === 'Cancelada',
+                                              'bg-warning-subtle text-warning':data.status === 'Pendiente' }">{{data.status}}</span>
                                     </td>
                                     <td>
                                         <i class="fab {{data.payment[0]}} me-1"></i>
@@ -537,8 +537,8 @@
                                     </td>
                                     <td>
                                         <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light">View
-                                            Details</button>
+                                        <button type="button" class="btn btn-primary btn-sm btn-rounded waves-effect waves-light">Ver Detalle
+                                            </button>
                                     </td>
                                 </tr>}
                             </tbody>

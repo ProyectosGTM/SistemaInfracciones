@@ -2,60 +2,61 @@ import { ChartType } from './dashboard.model';
 
 const transactions = [
     {
-        id: '#MB2540',
-        name: 'Neal Matthews',
-        date: '07 Oct, 2019',
-        total: '$400',
-        status: 'Paid',
+        id: '#MT1001',
+        name: 'Luis Hernández',
+        date: '07 Abr, 2025',
+        total: '$850',
+        status: 'Pagado',
         payment: ['fa-cc-mastercard', 'Mastercard'],
         index: 1
     },
     {
-        id: '#MB2541',
-        name: 'Jamal Burnett',
-        date: '07 Oct, 2019',
-        total: '$380',
-        status: 'Chargeback',
+        id: '#MT1002',
+        name: 'Sandra López',
+        date: '06 Abr, 2025',
+        total: '$620',
+        status: 'Cancelada',
         payment: ['fa-cc-visa', 'Visa'],
         index: 2
     },
     {
-        id: '#MB2542',
-        name: 'Juan Mitchell',
-        date: '06 Oct, 2019',
-        total: '$384',
-        status: 'Paid',
-        payment: ['fab fa-cc-paypal', 'Paypal'],
+        id: '#MT1003',
+        name: 'Carlos Ramírez',
+        date: '06 Abr, 2025',
+        total: '$730',
+        status: 'Pagado',
+        payment: ['fa fa-money', 'Efectivo'],
         index: 3
     },
     {
-        id: '#MB2543',
-        name: 'Barry Dick',
-        date: '05 Oct, 2019',
-        total: '$412',
-        status: 'Paid',
+        id: '#MT1004',
+        name: 'María Torres',
+        date: '05 Abr, 2025',
+        total: '$910',
+        status: 'Pagado',
         payment: ['fa-cc-mastercard', 'Mastercard'],
         index: 4
     },
     {
-        id: '#MB2544',
-        name: 'Ronald Taylor',
-        date: '04 Oct, 2019',
-        total: '$404',
-        status: 'Refund',
+        id: '#MT1005',
+        name: 'Ricardo Gómez',
+        date: '04 Abr, 2025',
+        total: '$770',
+        status: 'Pendiente',
         payment: ['fa-cc-visa', 'Visa'],
         index: 5
     },
     {
-        id: '#MB2545',
-        name: 'Jacob Hunter',
-        date: '04 Oct, 2019',
-        total: '$392',
-        status: 'Paid',
-        payment: ['fab fa-cc-paypal', 'Paypal'],
+        id: '#MT1006',
+        name: 'Ana Martínez',
+        date: '03 Abr, 2025',
+        total: '$695',
+        status: 'Pagado',
+        payment: ['fa fa-money', 'Efectivo'],
         index: 6
     }
 ];
+
 
 const lineColumAreaChart: ChartType = {
     chart: {
