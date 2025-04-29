@@ -126,10 +126,12 @@ select.form-control {
 }
 
 
+
 .centrarModal {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap; // <-- Agregado para dispositivos pequeños
+  flex-wrap: wrap;
+  padding: 1rem;
 }
 
 .alert-success-payment {
@@ -137,12 +139,12 @@ select.form-control {
   color: #004d40;
   text-align: center;
   border-radius: 16px;
-  padding: 40px 70px;
+  padding: 2.5rem 2rem;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease-in-out;
   width: 100%;
-  max-width: 600px; // <-- Para no desbordar en pantallas grandes
+  max-width: 600px;
   margin: 0 auto;
+  box-sizing: border-box;
 
   .check-icon {
     background: linear-gradient(135deg, #00c853, #2ecc71);
@@ -151,40 +153,40 @@ select.form-control {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto 20px auto;
+    margin: 0 auto 1.25rem auto;
     border-radius: 50%;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 
     i {
-      font-size: 32px;
+      font-size: clamp(24px, 4vw, 32px);
       color: white;
     }
   }
 
   .alert-title {
-    font-size: 26px;
+    font-size: clamp(20px, 5vw, 28px);
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 1.5rem;
     color: #00796b;
   }
 
   hr {
     border: 0;
     border-top: 1px solid #b2dfdb;
-    margin: 30px 0;
+    margin: 2rem 0;
   }
 
   .btn-continue {
     background-color: #00796b;
     color: white;
     border: none;
-    padding: 12px 35px;
+    padding: 0.75rem 2rem;
     border-radius: 8px;
     font-weight: 600;
-    font-size: 16px;
+    font-size: clamp(14px, 3.5vw, 16px);
     box-shadow: 0 4px 12px rgba(0, 121, 107, 0.4);
     transition: background-color 0.3s ease;
-    margin-top: 20px;
+    margin-top: 1.5rem;
 
     &:hover {
       background-color: #004d40;
@@ -195,56 +197,57 @@ select.form-control {
 .extra-info {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin: 25px 0;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
 
   div {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 16px;
+    font-size: clamp(14px, 4vw, 16px);
     color: #37474f;
-    flex-wrap: wrap; // <-- Agregado para mobile friendly
+    flex-wrap: wrap;
 
     strong {
       font-weight: 600;
-      flex: 1 1 45%; // <-- El label ocupa 45%
+      flex: 1 1 45%;
       text-align: left;
       min-width: 150px;
     }
 
     span {
-      font-size: 16px;
+      font-size: clamp(14px, 4vw, 16px);
       color: #00796b;
       background-color: #e0f2f1;
-      padding: 3px 10px;
+      padding: 4px 10px;
       border-radius: 6px;
       font-weight: bold;
       text-align: right;
       min-width: 150px;
-      flex: 1 1 45%; // <-- El dato ocupa 45%
+      flex: 1 1 45%;
       box-shadow: inset 0 0 5px rgba(0, 121, 107, 0.1);
     }
   }
 }
 
-// Responsive específico
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .alert-success-payment {
-    padding: 30px 20px;
+    padding: 2rem 1rem;
   }
-  
+
   .extra-info div {
     flex-direction: column;
     align-items: flex-start;
     gap: 5px;
 
-    strong, span {
+    strong,
+    span {
       min-width: 100%;
       text-align: left;
     }
   }
 }
+
 
 .btn{
   display: flex;

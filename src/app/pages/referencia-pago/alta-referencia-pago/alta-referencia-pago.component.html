@@ -28,19 +28,17 @@
                                 <div class="mb-3 col-lg-4">
                                     <input type="text" class="form-control" placeholder="Apellido Materno"
                                         (input)="actualizarNombreLegal($event, 'apellidoMaterno')">
-                                </div>                                
+                                </div>
                             </div>
                             <div class="row mt-0">
                                 <div class="mb-3 col-lg-6">
                                     <input type="text" formControlName="vRfc" class="form-control"
-                                        placeholder="RFC del conductor"
-                                        (input)="actualizarRFCs($event)"
-                                        maxlength="13">
+                                        placeholder="RFC del conductor" (input)="actualizarRFCs($event)" maxlength="13">
                                 </div>
-                                
+
                                 <div class="mb-3 col-lg-6">
                                     <input type="text" formControlName="vCurp" class="form-control"
-                                        placeholder="CURP del conductor" (input)="sanitizeInputCURP($event)" maxlength="18">
+                                        placeholder="CURP del conductor" (input)="actualizarCURPs()" maxlength="18">
                                 </div>
                             </div>
                         </div>
@@ -84,7 +82,7 @@
                                     <input type="text" class="form-control" placeholder="Entidad Federativa"
                                         (input)="actualizarDomicilio($event, 'entidad')">
                                 </div>
-                            </div>                            
+                            </div>
                         </div>
                         <div>
                             <div class="row mt-4">
@@ -98,22 +96,21 @@
                                 <div class="mb-3 col-lg-6">
                                     <div class="d-flex align-items-center">
                                         <label class="mb-0" style="width: 270px;">Tipo de licencia de conducir</label>
-                                        <select class="form-control" formControlName="tipoLicencia" id="tipoLicencia">
+                                        <select disabled class="form-control" id="tipoLicencia">
                                             <option value="">Selecciona una opción</option>
                                             <option value="120">Chofer particular</option>
                                             <option value="121">Automovilista</option>
                                             <option value="122">Motociclista</option>
                                             <option value="123">Aprendiz</option>
                                             <option value="124">Operador de transporte público</option>
-                                        </select>                                          
+                                        </select>
                                     </div>
                                 </div>
 
                                 <div class="mb-3 col-lg-6">
                                     <div class="d-flex align-items-center">
                                         <label class="mb-0" style="width: 250px;">No° de licencia de conducir</label>
-                                        <input type="text" formControlName="numeroLicencia" class="form-control"
-                                            placeholder="Ej. 234865121">
+                                        <input disabled type="text" class="form-control" placeholder="Ej. 234865121">
                                     </div>
                                 </div>
                             </div>
@@ -122,8 +119,7 @@
                                     <div class="d-flex align-items-center">
                                         <label class="mb-0" style="width: 270px;">Vigencia de la licencia de
                                             conducir</label>
-                                        <input type="date" formControlName="numeroLicencia" class="form-control"
-                                            placeholder="Ej. 11/01/2025">
+                                        <input disabled type="date" class="form-control" placeholder="Ej. 11/01/2025">
                                     </div>
                                 </div>
                             </div>
@@ -141,8 +137,12 @@
                                 <div class="mb-3 col-lg-6">
                                     <div class="d-flex align-items-center">
                                         <label class="mb-0" style="width: 250px;">Categoría de la multa</label>
-                                        <select class="form-control" name="tipoLicencia" id="tipoLicencia">
+                                        <select class="form-control" (change)="filtrarMultas($event)">
                                             <option value="">Selecciona una opción</option>
+                                            <option value="Placas">Placas</option>
+                                            <option value="Calcomanías">Calcomanías</option>
+                                            <option value="Luces">Luces</option>
+                                            <option value="Carece de dispositivos">Carece de dispositivos</option>
                                         </select>
                                     </div>
                                 </div>
@@ -150,45 +150,33 @@
                                 <div class="mb-3 col-lg-6">
                                     <div class="d-flex align-items-center">
                                         <label class="mb-0" style="width: 250px;">Multa específica</label>
-                                        <select class="form-control" formControlName="multaEspecifica" id="multaEspecifica">
+                                        <select class="form-control" [disabled]="multasFiltradas.length === 0"
+                                            (change)="asignarDescripcionMulta($event)">
                                             <option value="">Selecciona una opción</option>
-                                            <option value="LA01">LA01 - Colocación incorrecta de placas. (Art. 26)</option>
-                                            <option value="LA02">LA02 - Colocar dispositivos u objetos que se asemejen. (Art. 27)</option>
-                                            <option value="LA03">LA03 - Queda prohibido colocar en las placas objetos, sustancias reflejantes. (Art. 29)</option>
-                                            <option value="LB01">LB01 - No colocar la calcomanía o el engomado. (Art. 26)</option>
-                                            <option value="LB02">LB02 - Colocación incorrecta. (Art. 26)</option>
-                                            <option value="LC01">LC01 - Falta de fanales delanteros de luz blanca y fija. (Art. 32 fracc. VI)</option>
-                                            <option value="LC02">LC02 - Usar los faros de niebla como luz principal. (Art. 32 VII)</option>
-                                            <option value="LC03">LC03 - Por no usar las luces direccionales deberán emplearse para indicar cambios de dirección. (Art. 69)</option>
-                                            <option value="LD01">LD01 - El no encontrarse en buen estado de funcionamiento. (Art. 32 fracc. I)</option>
-                                            <option value="LD02">LD02 - Claxon o Bocina. (Art. 32 fracc. II)</option>
-                                            <option value="LD03">LD03 - Velocímetro. (Art. 32 fracc. V)</option>
-                                            <option value="LD04">LD04 - Silenciador. (Art. 32 fracc. XI)</option>
-                                            <option value="LD05">LD05 - Espejos retrovisores. (Art. 32 fracc. IX)</option>
-                                            <option value="LD06">LD06 - Cinturones de seguridad. (Art. 32 fracc. XV)</option>
-                                            <option value="LD07">LD07 - Limpiadores de parabrisas. (Art. 32 fracc. XII)</option>
-                                          </select>                                                                                   
+                                            <option *ngFor="let multa of multasFiltradas" [value]="multa.descripcion">
+                                                {{ multa.codigo }} - {{ multa.descripcion }} ({{ multa.articulo }})
+                                            </option>
+                                        </select>
                                     </div>
                                 </div>
+
                             </div>
                             <div class="row mt-0">
                                 <div class="mb-3 col-lg-6">
                                     <div class="d-flex align-items-center">
                                         <label class="mb-0" style="width: 250px;">Monto de la multa:</label>
                                         <input type="text" formControlName="vImporteCobrado" class="form-control"
-                                            placeholder="Monto de la multa"
-                                            (input)="actualizarImportes($event)">
-                                    </div>                                    
+                                            placeholder="Monto de la multa" (input)="actualizarImportes()">
+                                    </div>
                                 </div>
                             </div>
                             <div class="row mt-0">
                                 <div class="mb-3 col-lg-12">
                                     <div class="d-flex align-items-center">
                                         <label class="mb-0" style="width: 400px;">Clasificación en finanzas</label>
-                                        <input type="text" formControlName="numeroLicencia" class="form-control"
-                                            placeholder="Otros">
-                                        <input type="text" formControlName="numeroLicencia" style="margin-left: 15px;"
-                                            class="form-control" placeholder="ID conforme finanzas">
+                                        <input disabled type="text" class="form-control" placeholder="Otros">
+                                        <input disabled type="text" style="margin-left: 15px;" class="form-control"
+                                            placeholder="ID conforme finanzas">
                                     </div>
                                 </div>
                             </div>
@@ -196,8 +184,8 @@
                                 <div class="mb-3 col-lg-12">
                                     <div class="d-flex align-items-center">
                                         <label class="mb-0" style="width: 210px;">Descripción breve de la multa</label>
-                                        <input type="text" formControlName="numeroLicencia" style="width: 30%;"
-                                            class="form-control" placeholder="Ej. Manejar en sentido contrario">
+                                        <input disabled type="text" style="width: 30%;" class="form-control"
+                                            placeholder="Ej. Manejar en sentido contrario">
                                     </div>
                                 </div>
                             </div>
@@ -217,29 +205,26 @@
                                         placeholder="Placa del vehículo">
                                 </div>
                                 <div class="mb-3 col-lg-3">
-                                    <input type="text" formControlName="name" class="form-control"
-                                        placeholder="Marca del vehículo">
+                                    <input type="text" disabled class="form-control" placeholder="Marca del vehículo">
                                 </div>
                                 <div class="mb-3 col-lg-3">
-                                    <input type="text" formControlName="name" class="form-control"
-                                        placeholder="Modelo del vehículo">
+                                    <input type="text" disabled class="form-control" placeholder="Modelo del vehículo">
                                 </div>
                                 <div class="mb-3 col-lg-3">
-                                    <input type="text" formControlName="name" class="form-control"
-                                        placeholder="Año del vehículo">
+                                    <input type="text" disabled class="form-control" placeholder="Año del vehículo">
                                 </div>
                             </div>
                             <div class="row mt-0">
                                 <div class="mb-3 col-lg-4">
-                                    <input type="text" formControlName="name" class="form-control"
+                                    <input type="text" disabled class="form-control"
                                         placeholder="Folio de la tarjeta de circulación">
                                 </div>
                                 <div class="mb-3 col-lg-4">
-                                    <input type="text" formControlName="name" class="form-control"
+                                    <input type="text" disabled class="form-control"
                                         placeholder="Vigencía de la tarjeta de circulación">
                                 </div>
                                 <div class="mb-3 col-lg-4">
-                                    <input type="text" formControlName="name" class="form-control"
+                                    <input type="text" disabled class="form-control"
                                         placeholder="Propietario de vehículo">
                                 </div>
                             </div>
@@ -248,7 +233,8 @@
 
                         <div class="mt-4 d-flex gap-2">
                             <button type="submit" class="btn btn-success" (click)="verDatos()" id="greenAlta">
-                                <i class="fa fa-check"></i> <span> Enviar Datos</span>
+                                <span class="loader" *ngIf="loading"></span>&nbsp;
+                                <i class="fa fa-check" *ngIf="!loading"></i>&nbsp;<span>{{submitButton}}</span>
                             </button>
 
                             <button type="button" class="btn btn-danger">
@@ -261,7 +247,7 @@
         </div>
     </div>
 
-    <div class="row mt-5 centrarModal" *ngIf="showAlertSuccess">
+    <div class="row mt-5 centrarModal" [@fadeInUp] *ngIf="showAlertSuccess">
         <div class="col-lg-6">
             <div class="card-body">
                 <div class="alert-success-payment">
@@ -271,13 +257,10 @@
                     <h4 class="alert-title">¡Operación Exitosa!</h4>
 
                     <div class="extra-info">
-                        <div><strong>Estatus de la operación:</strong> <span>{{ estatusOperacion || 'OK' }}</span></div>
-                        <div><strong>Referencia generada:</strong> <span>{{ referenciaGenerada || '13670667224224112613'
-                                }}</span></div>
-                        <div><strong>Fecha de vencimiento:</strong> <span>{{ fechaVencimiento || '14/04/2025' }}</span>
-                        </div>
-                        <div><strong>Folio de registro de la multa:</strong> <span>{{ folioMulta || '1104367' }}</span>
-                        </div>
+                        <div><strong>Estatus de la operación:</strong> <span>{{ estatusService  }}</span> </div>
+                        <div><strong>Referencia generada:</strong> <span>{{ referenciaService  }}</span></div>
+                        <div><strong>Fecha de vencimiento:</strong> <span>{{ fechaVencService  }}</span> </div>
+                        <div><strong>Folio de registro de la multa:</strong> <span>{{ foliosService  }}</span> </div>
                     </div>
                     <button class="btn-continue" (click)="mostrarForm()">Aceptar</button>
                 </div>

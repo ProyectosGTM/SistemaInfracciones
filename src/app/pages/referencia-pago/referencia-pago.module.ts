@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ReferenciaPagoRoutingModule } from './referencia-pago-routing.module';
 import { AltaReferenciaPagoComponent } from './alta-referencia-pago/alta-referencia-pago.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DxDateBoxModule, DxLoadIndicatorModule } from 'devextreme-angular';
 
 
@@ -14,7 +14,8 @@ import { DxDateBoxModule, DxLoadIndicatorModule } from 'devextreme-angular';
     ReferenciaPagoRoutingModule,
     ReactiveFormsModule,
     DxDateBoxModule,
-    DxLoadIndicatorModule
+    DxLoadIndicatorModule,
+    FormsModule
   ]
 })
 export class ReferenciaPagoModule { }
