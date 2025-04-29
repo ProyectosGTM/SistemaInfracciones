@@ -7,29 +7,30 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <form>
+                    <form [formGroup]="estatusForm">
                         <div>
                             <div class="row mt-2">
                                 <div class="mb-3 col-lg-12">
                                     <div class="d-flex align-items-center">
                                         <label class="mb-0" style="width: 270px;">Referencia de pago:</label>
-                                        <input type="text" maxlength="20" formControlName="numeroLicencia" class="form-control"
+                                        <input type="text" maxlength="20" formControlName="folio" class="form-control"
                                             placeholder="Ej. 13670667224224174851">
                                     </div>
                                 </div>
 
                                 <div class="mb-3 col-lg-12">
                                     <div class="d-flex align-items-center">
-                                        <label class="mb-0" style="width: 270px;">Identificador de la obligación:</label>
-                                        <input type="text" formControlName="numeroLicencia" class="form-control"
-                                            placeholder="Ej. TBD">
+                                        <label class="mb-0" style="width: 270px;">Identificador de la
+                                            obligación:</label>
+                                        <input type="text" formControlName="obligacion" class="form-control"
+                                            placeholder="Ej. 13">
                                     </div>
                                 </div>
 
                                 <div class="mb-3 col-lg-12">
                                     <div class="d-flex align-items-center">
                                         <label class="mb-0" style="width: 270px;">CURP del conductor:</label>
-                                        <input type="text" formControlName="numeroLicencia" class="form-control"
+                                        <input type="text" formControlName="curp" class="form-control"
                                             placeholder="Ej. GODE561231GR8">
                                     </div>
                                 </div>
@@ -37,15 +38,16 @@
                                 <div class="mb-3 col-lg-12">
                                     <div class="d-flex align-items-center">
                                         <label class="mb-0" style="width: 270px;">RFC del conductor:</label>
-                                        <input type="text" formControlName="numeroLicencia" class="form-control"
-                                            placeholder="Ej. GOCJ561231HDFRRN09" (input)="sanitizeInput($event)" maxlength="13">
+                                        <input type="text" formControlName="rfc" class="form-control"
+                                            placeholder="Ej. GOCJ561231HDFRRN09" (input)="sanitizeInput($event)"
+                                            maxlength="13">
                                     </div>
                                 </div>
 
                                 <div class="mb-3 col-lg-12">
                                     <div class="d-flex align-items-center">
                                         <label class="mb-0" style="width: 270px;">Fecha de vencimiento de pago:</label>
-                                        <input type="date" formControlName="numeroLicencia" class="form-control"
+                                        <input type="date" formControlName="fechaPago" class="form-control"
                                             placeholder="Ej. 02/08/2028">
                                     </div>
                                 </div>
@@ -54,12 +56,13 @@
 
 
                         <div class="mt-4 d-flex gap-2">
-                            <button type="submit" class="btn btn-success" (click)="mostrarAlerta()" id="greenAlta">
-                                <i class="fa fa-check"></i> <span> Enviar Datos</span>
+                            <button type="submit" class="btn btn-success" (click)="obtenerEstatus()" id="greenAlta">
+                                <span class="loader" *ngIf="loading"></span>&nbsp;
+                                <i class="fa fa-check" *ngIf="!loading"></i>&nbsp;<span>{{submitButton}}</span>
                             </button>
 
-                            <button type="button" class="btn btn-danger">
-                                <i class="fa fa-times"></i> Cancelar
+                            <button type="button" class="btn btn-danger" (click)="mostrarForm()">
+                                <i class="fa fa-times"></i>&nbsp;Cancelar
                             </button>
                         </div>
                     </form>
@@ -68,24 +71,59 @@
         </div>
     </div>
 
-    <div class="row mt-5 centrarModal" *ngIf="showAlertSuccess">
+    <div class="row mt-5 centrarModal" [@fadeInUp] *ngIf="showAlertSuccess">
         <div class="col-lg-6">
             <div class="card-body">
                 <div class="alert-success-payment">
                     <div class="check-icon">
                         <i class="fa fa-check"></i>
                     </div>
-                    <h4 class="alert-title">¡Operación Exitosa!</h4>
-
+                    <h4 class="alert-title">¡Consulta Exitosa!</h4>
                     <div class="extra-info">
-                        <div><strong>Referencia de pago:</strong> <span>{{ referenciaGenerada || '13670667224224112613'}}</span></div>
-                        <div><strong>Estatus:</strong> <span>{{ estatusOperacion || 'PAGADO' }}</span></div>
-                        <div><strong>Importe pagado:</strong> <span>{{ estatusOperacion || '$ 1,131.40' }}</span></div>
-                        <div><strong>Fecha de vencimiento:</strong> <span>{{ fechaVencimiento || '30/04/2025' }}</span></div>
-                        <div><strong>Fecha de pago:</strong> <span>{{ fechaVencimiento || '14/04/2025' }}</span></div>
-                        <div><strong>RFC del conductor:</strong> <span>{{ folioMulta || 'GOTJ71106IQ5' }}</span>
+                        <div>
+                            <strong>Referencia de pago:</strong>
+                            <span [ngStyle]="{
+                            'background-color': estadoNoPagado ? '#ffebee' : '#e0f2f1',
+                            'color': estadoNoPagado ? '#c62828' : '#00796b'
+                          }">{{ folioRespuesta }}</span>
+                        </div>
+                        <div>
+                            <strong>Estatus:</strong>
+                            <span [ngStyle]="{
+                            'background-color': estadoNoPagado ? '#ffebee' : '#e0f2f1',
+                            'color': estadoNoPagado ? '#c62828' : '#00796b'
+                          }">{{ estatusRespuesta }}</span>
+                        </div>
+                        <div>
+                            <strong>Importe pagado:</strong>
+                            <span [ngStyle]="{
+                            'background-color': estadoNoPagado ? '#ffebee' : '#e0f2f1',
+                            'color': estadoNoPagado ? '#c62828' : '#00796b'
+                          }">{{ estatusOperacion || '$ 1,131.40' }}</span>
+                        </div>
+                        <div>
+                            <strong>Fecha de vencimiento:</strong>
+                            <span [ngStyle]="{
+                            'background-color': estadoNoPagado ? '#ffebee' : '#e0f2f1',
+                            'color': estadoNoPagado ? '#c62828' : '#00796b'
+                          }">{{ fechaVencimientoRespuesta }}</span>
+                        </div>
+                        <div>
+                            <strong>Fecha de pago:</strong>
+                            <span [ngStyle]="{
+                            'background-color': estadoNoPagado ? '#ffebee' : '#e0f2f1',
+                            'color': estadoNoPagado ? '#c62828' : '#00796b'
+                          }">{{ fechaRespuesta || '2025-07-15' }}</span>
+                        </div>
+                        <div>
+                            <strong>RFC del conductor:</strong>
+                            <span [ngStyle]="{
+                            'background-color': estadoNoPagado ? '#ffebee' : '#e0f2f1',
+                            'color': estadoNoPagado ? '#c62828' : '#00796b'
+                          }">{{ rfcRespuesta }}</span>
                         </div>
                     </div>
+
                     <button class="btn-continue" (click)="mostrarForm()">Aceptar</button>
                 </div>
             </div>
