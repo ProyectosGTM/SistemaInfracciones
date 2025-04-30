@@ -41,7 +41,7 @@ export class ConsultaEstatusPagoComponent implements OnInit {
   initForm() {
     this.estatusForm = this.fb.group({
       usuario: ['WSSP'],
-      contrasena: ['sAH1c450'],
+      contrasena: ['sAH1c451'],
       folio: ['', Validators.required],
       obligacion: ['', Validators.required],
       curp: ['', Validators.required],
@@ -54,14 +54,31 @@ export class ConsultaEstatusPagoComponent implements OnInit {
     this.loading = true;
     this.submitButton = 'Guardando...';
   
+    // Asegura valores fijos
     this.estatusForm.patchValue({
       usuario: 'WSSP',
-      contrasena: 'sAH1c450'
+      contrasena: 'sAH1c451' // ✅ corregido
     });
   
-    console.log('datos:', this.estatusForm.getRawValue());
+    // Obtener valores del formulario
+    const rawValues = this.estatusForm.getRawValue();
   
-    this.estatusPago.obtenerEstatus(this.estatusForm.getRawValue()).subscribe(
+    // ✅ Formatear fechaPago a DD/MM/YYYY
+    const fecha = new Date(rawValues.fechaPago);
+    const dia = String(fecha.getDate()).padStart(2, '0');
+    const mes = String(fecha.getMonth() + 1).padStart(2, '0');
+    const anio = fecha.getFullYear();
+    const fechaFormateada = `${dia}/${mes}/${anio}`;
+  
+    // Construir payload con fecha formateada
+    const payload = {
+      ...rawValues,
+      fechaPago: fechaFormateada
+    };
+  
+    console.log('datos enviados:', payload);
+  
+    this.estatusPago.obtenerEstatus(payload).subscribe(
       (response) => {
         this.submitButton = 'Enviar Datos';
         this.loading = false;
@@ -70,8 +87,8 @@ export class ConsultaEstatusPagoComponent implements OnInit {
   
         this.folioRespuesta = response.folio;
         this.estatusRespuesta = response.estado;
-        this.fechaVencimientoRespuesta = this.estatusForm.get('fechaPago').value;
-        this.rfcRespuesta = this.estatusForm.get('rfc').value;
+        this.fechaVencimientoRespuesta = payload.fechaPago;
+        this.rfcRespuesta = this.estatusForm.get('rfc')?.value;
   
         this.estadoNoPagado = (response.estado?.toUpperCase() === "NO PAGADO");
         this.estadoDesconocido = (response.estado?.toUpperCase() === "DESCONOCIDO");
@@ -84,6 +101,7 @@ export class ConsultaEstatusPagoComponent implements OnInit {
       }
     );
   }
+  
   
 
   mostrarAlerta() {
