@@ -13,8 +13,8 @@
                                 <div class="mb-3 col-lg-12">
                                     <div class="d-flex align-items-center">
                                         <label class="mb-0" style="width: 270px;">Referencia de pago:</label>
-                                        <input type="text" maxlength="20" formControlName="folio" class="form-control"
-                                            placeholder="Ej. 2391721">
+                                        <input type="text" maxlength="7" formControlName="folio" class="form-control" 
+                                        placeholder="Ej. 2391721" (keypress)="permitirSoloNumeros($event)">
                                     </div>
                                 </div>
 
@@ -31,7 +31,7 @@
                                     <div class="d-flex align-items-center">
                                         <label class="mb-0" style="width: 270px;">CURP del conductor:</label>
                                         <input type="text" formControlName="curp" class="form-control"
-                                            placeholder="Ej. GOCJ561231HDFRRN09" maxlength="18">
+                                            placeholder="Ej. GOCJ561231HDFRRN09" maxlength="18" (input)="sanitizeInputCurp($event)">
                                     </div>
                                 </div>
 
@@ -53,7 +53,6 @@
                                 </div>
                             </div>
                         </div>
-
 
                         <div class="mt-4 d-flex gap-2">
                             <button type="submit" class="btn btn-success" (click)="obtenerEstatus()" id="greenAlta">

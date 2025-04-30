@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { fadeInUpAnimation } from 'src/app/core/animations/fade-in-up.animation';
 import { EstatusPagoService } from 'src/app/shared/services/estatus-pago.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-consulta-estatus-pago',
@@ -51,6 +52,20 @@ export class ConsultaEstatusPagoComponent implements OnInit {
   }
 
   obtenerEstatus() {
+
+    if (this.estatusForm.invalid) {
+      this.estatusForm.markAllAsTouched();
+
+      Swal.fire({
+        icon: 'warning',
+        title: 'Formulario incompleto',
+        text: 'Por favor llena todos los campos obligatorios antes de continuar.',
+        confirmButtonText: 'Aceptar'
+      });
+
+      return;
+    }
+
     this.loading = true;
     this.submitButton = 'Guardando...';
   
@@ -102,8 +117,6 @@ export class ConsultaEstatusPagoComponent implements OnInit {
     );
   }
   
-  
-
   mostrarAlerta() {
     this.showAlertSuccess = true;
     this.showForm = false;
@@ -121,5 +134,20 @@ export class ConsultaEstatusPagoComponent implements OnInit {
     inputElement.value = sanitizedValue.slice(0, 13);
   
   }
+
+  sanitizeInputCurp(event: any): void {
+    const inputElement = event.target as HTMLInputElement;
+    const sanitizedValue = inputElement.value.replace(/[^A-Za-z0-9]/g, '');
+    inputElement.value = sanitizedValue.slice(0, 13);
+  
+  }
+
+  permitirSoloNumeros(event: KeyboardEvent) {
+    const charCode = event.charCode;
+    if (charCode < 48 || charCode > 57) {
+      event.preventDefault();
+    }
+  }
+  
 
 }
