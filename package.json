@@ -54,6 +54,8 @@
     "firebase": "^10.7.1",
     "flatpickr": "^4.6.13",
     "gojs": "^2.3.17",
+    "jspdf": "^3.0.1",
+    "jspdf-autotable": "^5.0.2",
     "leaflet": "^1.9.4",
     "masonry-layout": "^4.2.2",
     "metismenujs": "^1.4.0",

@@ -41,7 +41,7 @@ export class ConsultaEstatusPagoComponent implements OnInit {
   initForm() {
     this.estatusForm = this.fb.group({
       usuario: ['WSSP'],
-      contrasena: ['sAH1c451'],
+      contrasena: ['sAH1c450'],
       folio: ['', Validators.required],
       obligacion: ['', Validators.required],
       curp: ['', Validators.required],
@@ -53,25 +53,30 @@ export class ConsultaEstatusPagoComponent implements OnInit {
   obtenerEstatus() {
     this.loading = true;
     this.submitButton = 'Guardando...';
-    console.log('datos:', this.estatusForm.value)
-    this.estatusPago.obtenerEstatus(this.estatusForm.value).subscribe(
+  
+    this.estatusForm.patchValue({
+      usuario: 'WSSP',
+      contrasena: 'sAH1c450'
+    });
+  
+    console.log('datos:', this.estatusForm.getRawValue());
+  
+    this.estatusPago.obtenerEstatus(this.estatusForm.getRawValue()).subscribe(
       (response) => {
         this.submitButton = 'Enviar Datos';
         this.loading = false;
         this.showAlertSuccess = true;
         this.showForm = false;
-
-
+  
         this.folioRespuesta = response.folio;
         this.estatusRespuesta = response.estado;
         this.fechaVencimientoRespuesta = this.estatusForm.get('fechaPago').value;
         this.rfcRespuesta = this.estatusForm.get('rfc').value;
-
+  
         this.estadoNoPagado = (response.estado?.toUpperCase() === "NO PAGADO");
-
         this.estadoDesconocido = (response.estado?.toUpperCase() === "DESCONOCIDO");
-
-      }, (error) => {
+      },
+      (error) => {
         this.showForm = true;
         this.showAlertSuccess = false;
         this.submitButton = 'Enviar Datos';
@@ -79,6 +84,7 @@ export class ConsultaEstatusPagoComponent implements OnInit {
       }
     );
   }
+  
 
   mostrarAlerta() {
     this.showAlertSuccess = true;

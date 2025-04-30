@@ -14,7 +14,7 @@
                                     <div class="d-flex align-items-center">
                                         <label class="mb-0" style="width: 270px;">Referencia de pago:</label>
                                         <input type="text" maxlength="20" formControlName="folio" class="form-control"
-                                            placeholder="Ej. 13670667224224174851">
+                                            placeholder="Ej. 2391721">
                                     </div>
                                 </div>
 
@@ -83,63 +83,45 @@
                         <div>
                             <strong>Referencia de pago:</strong>
                             <span [ngStyle]="{
-                              'background-color': estadoNoPagado ? '#ffebee' :
-                                                  estadoDesconocido ? '#fff8e1' : '#e0f2f1',
-                              'color': estadoNoPagado ? '#c62828' :
-                                       estadoDesconocido ? '#f9a825' : '#00796b'
-                            }">{{ folioRespuesta }}</span>
+                            'background-color': estadoNoPagado ? '#ffebee' : '#e0f2f1',
+                            'color': estadoNoPagado ? '#c62828' : '#00796b'
+                          }">{{ folioRespuesta }}</span>
                         </div>
-
                         <div>
                             <strong>Estatus:</strong>
                             <span [ngStyle]="{
-                              'background-color': estadoNoPagado ? '#ffebee' :
-                                                  estadoDesconocido ? '#fff8e1' : '#e0f2f1',
-                              'color': estadoNoPagado ? '#c62828' :
-                                       estadoDesconocido ? '#f9a825' : '#00796b'
-                            }">{{ estatusRespuesta }}</span>
+                            'background-color': estadoNoPagado ? '#ffebee' : '#e0f2f1',
+                            'color': estadoNoPagado ? '#c62828' : '#00796b'
+                          }">{{ estatusRespuesta }}</span>
                         </div>
-
                         <div>
                             <strong>Importe pagado:</strong>
                             <span [ngStyle]="{
-                              'background-color': estadoNoPagado ? '#ffebee' :
-                                                  estadoDesconocido ? '#fff8e1' : '#e0f2f1',
-                              'color': estadoNoPagado ? '#c62828' :
-                                       estadoDesconocido ? '#f9a825' : '#00796b'
-                            }">{{ estatusOperacion || '$ 1,131.40' }}</span>
+                            'background-color': estadoNoPagado ? '#ffebee' : '#e0f2f1',
+                            'color': estadoNoPagado ? '#c62828' : '#00796b'
+                          }">{{ estatusOperacion || '$ 1,131.40' }}</span>
                         </div>
-
                         <div>
                             <strong>Fecha de vencimiento:</strong>
                             <span [ngStyle]="{
-                              'background-color': estadoNoPagado ? '#ffebee' :
-                                                  estadoDesconocido ? '#fff8e1' : '#e0f2f1',
-                              'color': estadoNoPagado ? '#c62828' :
-                                       estadoDesconocido ? '#f9a825' : '#00796b'
-                            }">{{ fechaVencimientoRespuesta }}</span>
+                            'background-color': estadoNoPagado ? '#ffebee' : '#e0f2f1',
+                            'color': estadoNoPagado ? '#c62828' : '#00796b'
+                          }">{{ fechaVencimientoRespuesta }}</span>
                         </div>
-
                         <div>
                             <strong>Fecha de pago:</strong>
                             <span [ngStyle]="{
-                              'background-color': estadoNoPagado ? '#ffebee' :
-                                                  estadoDesconocido ? '#fff8e1' : '#e0f2f1',
-                              'color': estadoNoPagado ? '#c62828' :
-                                       estadoDesconocido ? '#f9a825' : '#00796b'
-                            }">{{ fechaRespuesta || '2025-07-15' }}</span>
+                            'background-color': estadoNoPagado ? '#ffebee' : '#e0f2f1',
+                            'color': estadoNoPagado ? '#c62828' : '#00796b'
+                          }">{{ fechaRespuesta || '2025-07-15' }}</span>
                         </div>
-
                         <div>
                             <strong>RFC del conductor:</strong>
                             <span [ngStyle]="{
-                              'background-color': estadoNoPagado ? '#ffebee' :
-                                                  estadoDesconocido ? '#fff8e1' : '#e0f2f1',
-                              'color': estadoNoPagado ? '#c62828' :
-                                       estadoDesconocido ? '#f9a825' : '#00796b'
-                            }">{{ rfcRespuesta }}</span>
+                            'background-color': estadoNoPagado ? '#ffebee' : '#e0f2f1',
+                            'color': estadoNoPagado ? '#c62828' : '#00796b'
+                          }">{{ rfcRespuesta }}</span>
                         </div>
-
                     </div>
 
                     <button class="btn-continue" (click)="mostrarForm()">Aceptar</button>
