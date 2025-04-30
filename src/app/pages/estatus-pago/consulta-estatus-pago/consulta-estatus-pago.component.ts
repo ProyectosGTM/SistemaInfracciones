@@ -8,10 +8,9 @@ import Swal from 'sweetalert2';
   selector: 'app-consulta-estatus-pago',
   templateUrl: './consulta-estatus-pago.component.html',
   styleUrl: './consulta-estatus-pago.component.scss',
-  animations: [fadeInUpAnimation]
+  animations: [fadeInUpAnimation],
 })
 export class ConsultaEstatusPagoComponent implements OnInit {
-
   public showForm: boolean = true;
   public showAlertSuccess: boolean = false;
   public estatusForm: FormGroup;
@@ -31,12 +30,11 @@ export class ConsultaEstatusPagoComponent implements OnInit {
 
   constructor(
     private estatusPago: EstatusPagoService,
-    private fb: FormBuilder,
-  ) {
-  }
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
-    this.initForm()
+    this.initForm();
   }
 
   initForm() {
@@ -48,65 +46,60 @@ export class ConsultaEstatusPagoComponent implements OnInit {
       curp: ['', Validators.required],
       rfc: ['', Validators.required],
       fechaPago: ['', Validators.required],
-    })
+    });
   }
 
   obtenerEstatus() {
-
     if (this.estatusForm.invalid) {
       this.estatusForm.markAllAsTouched();
 
       Swal.fire({
         icon: 'warning',
-        title: 'Formulario incompleto',
+        title: 'Formulario Incompleto',
         text: 'Por favor llena todos los campos obligatorios antes de continuar.',
-        confirmButtonText: 'Aceptar'
+        confirmButtonText: 'Aceptar',
       });
-
       return;
     }
 
     this.loading = true;
     this.submitButton = 'Guardando...';
-  
-    // Asegura valores fijos
+
     this.estatusForm.patchValue({
       usuario: 'WSSP',
-      contrasena: 'sAH1c451' // ✅ corregido
+      contrasena: 'sAH1c451',
     });
-  
-    // Obtener valores del formulario
+
     const rawValues = this.estatusForm.getRawValue();
-  
-    // ✅ Formatear fechaPago a DD/MM/YYYY
+
     const fecha = new Date(rawValues.fechaPago);
     const dia = String(fecha.getDate()).padStart(2, '0');
     const mes = String(fecha.getMonth() + 1).padStart(2, '0');
     const anio = fecha.getFullYear();
     const fechaFormateada = `${dia}/${mes}/${anio}`;
-  
-    // Construir payload con fecha formateada
+
     const payload = {
       ...rawValues,
-      fechaPago: fechaFormateada
+      fechaPago: fechaFormateada,
     };
-  
+
     console.log('datos enviados:', payload);
-  
+
     this.estatusPago.obtenerEstatus(payload).subscribe(
       (response) => {
         this.submitButton = 'Enviar Datos';
         this.loading = false;
         this.showAlertSuccess = true;
         this.showForm = false;
-  
+
         this.folioRespuesta = response.folio;
         this.estatusRespuesta = response.estado;
         this.fechaVencimientoRespuesta = payload.fechaPago;
         this.rfcRespuesta = this.estatusForm.get('rfc')?.value;
-  
-        this.estadoNoPagado = (response.estado?.toUpperCase() === "NO PAGADO");
-        this.estadoDesconocido = (response.estado?.toUpperCase() === "DESCONOCIDO");
+
+        this.estadoNoPagado = response.estado?.toUpperCase() === 'NO PAGADO';
+        this.estadoDesconocido =
+          response.estado?.toUpperCase() === 'DESCONOCIDO';
       },
       (error) => {
         this.showForm = true;
@@ -116,14 +109,14 @@ export class ConsultaEstatusPagoComponent implements OnInit {
       }
     );
   }
-  
+
   mostrarAlerta() {
     this.showAlertSuccess = true;
     this.showForm = false;
   }
 
   mostrarForm() {
-    this.estatusForm.reset()
+    this.estatusForm.reset();
     this.showForm = true;
     this.showAlertSuccess = false;
   }
@@ -132,14 +125,12 @@ export class ConsultaEstatusPagoComponent implements OnInit {
     const inputElement = event.target as HTMLInputElement;
     const sanitizedValue = inputElement.value.replace(/[^A-Za-z0-9]/g, '');
     inputElement.value = sanitizedValue.slice(0, 13);
-  
   }
 
   sanitizeInputCurp(event: any): void {
     const inputElement = event.target as HTMLInputElement;
     const sanitizedValue = inputElement.value.replace(/[^A-Za-z0-9]/g, '');
-    inputElement.value = sanitizedValue.slice(0, 13);
-  
+    inputElement.value = sanitizedValue.slice(0, 18);
   }
 
   permitirSoloNumeros(event: KeyboardEvent) {
@@ -148,6 +139,4 @@ export class ConsultaEstatusPagoComponent implements OnInit {
       event.preventDefault();
     }
   }
-  
-
 }

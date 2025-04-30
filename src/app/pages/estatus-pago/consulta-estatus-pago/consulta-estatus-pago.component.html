@@ -22,8 +22,8 @@
                                     <div class="d-flex align-items-center">
                                         <label class="mb-0" style="width: 270px;">Identificador de la
                                             obligación:</label>
-                                        <input type="text" formControlName="obligacion" class="form-control"
-                                            placeholder="Ej. 13">
+                                        <input type="text" maxlength="2" formControlName="obligacion" class="form-control"
+                                            placeholder="Ej. 13" (keypress)="permitirSoloNumeros($event)">
                                     </div>
                                 </div>
 
